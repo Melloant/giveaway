@@ -9,7 +9,11 @@
 </head>
 <body>
   <header>
-    <h1><a href="/">Giveaways</a></h1>
+    <h1 class="site-title">
+      <a href="/">
+        <img src="{% static 'giveaways/giveawayF_transparent.png' %}" alt="Giveaways" class="header-logo">
+      </a>
+    </h1>
   </header>
   <main>
     {% block content %}{% endblock %}
