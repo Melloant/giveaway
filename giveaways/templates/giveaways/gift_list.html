@@ -1,0 +1,68 @@
+{% extends 'giveaways/base.html' %}
+{% block content %}
+<div class="page-wrapper">
+  <!-- Anúncios Esquerda -->
+  <aside class="ads-column ads-left" aria-label="Anúncios esquerda">
+    <div class="ad-stack">
+      {% for ad in ad_slots_left %}
+        {% if ad %}
+          <a class="ad-item" href="{{ ad.target_url|default:'#' }}" target="_blank" rel="noopener">
+            {% if ad.image_url %}
+              <img src="{{ ad.image_url }}" alt="{{ ad.title }}">
+            {% else %}
+              <div class="ad-content">
+                <div class="ad-title">{{ ad.title }}</div>
+                <div class="ad-sponsor">{{ ad.sponsor }}</div>
+              </div>
+            {% endif %}
+          </a>
+        {% else %}
+          <div class="ad-item ad-empty">Espaço disponível</div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </aside>
+
+  <!-- Content Grid Central -->
+  <div class="content-grid">
+    <section class="main-area">
+      <h2>Brindes ativos</h2>
+      <ul class="gifts">
+        {% for gift in gifts %}
+          <li class="gift">
+            <h3>{{ gift.title }}</h3>
+            <p>{{ gift.description }}</p>
+            <p><strong>Retirada:</strong> {{ gift.pickup_location }} — {{ gift.pickup_time }}</p>
+            <a class="btn" href="{% url 'giveaways:register' gift.pk %}">Participar</a>
+            <a class="btn-outline" href="{% url 'giveaways:gift_detail' gift.pk %}">Detalhes</a>
+          </li>
+        {% empty %}
+          <li>Nenhum brinde ativo no momento.</li>
+        {% endfor %}
+      </ul>
+    </section>
+  </div>
+
+  <!-- Anúncios Direita -->
+  <aside class="ads-column ads-right" aria-label="Anúncios direita">
+    <div class="ad-stack">
+      {% for ad in ad_slots_right %}
+        {% if ad %}
+          <a class="ad-item" href="{{ ad.target_url|default:'#' }}" target="_blank" rel="noopener">
+            {% if ad.image_url %}
+              <img src="{{ ad.image_url }}" alt="{{ ad.title }}">
+            {% else %}
+              <div class="ad-content">
+                <div class="ad-title">{{ ad.title }}</div>
+                <div class="ad-sponsor">{{ ad.sponsor }}</div>
+              </div>
+            {% endif %}
+          </a>
+        {% else %}
+          <div class="ad-item ad-empty">Espaço disponível</div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </aside>
+</div>
+{% endblock %}

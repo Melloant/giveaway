@@ -1,0 +1,30 @@
+{% extends 'giveaways/base.html' %}
+{% block content %}
+  <h2>Inscrição para: {{ gift.title }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label>
+      {{ form.already_registered }} Já sou cadastrado
+    </label>
+    <div>
+      <label>Telefone (obrigatório)</label>
+      {{ form.phone }}
+    </div>
+    <div id="new-user-fields">
+      <label>Nome</label>
+      {{ form.name }}
+      <label>Email</label>
+      {{ form.email }}
+      <label>Município</label>
+      {{ form.municipio }}
+    </div>
+    <button type="submit" class="btn">Enviar</button>
+  </form>
+  <script>
+    const checkbox = document.querySelector('input[name="already_registered"]');
+    const newFields = document.getElementById('new-user-fields');
+    function toggle() { newFields.style.display = checkbox.checked ? 'none' : 'block'; }
+    checkbox.addEventListener('change', toggle);
+    toggle();
+  </script>
+{% endblock %}

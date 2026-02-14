@@ -1,0 +1,9 @@
+{% extends 'giveaways/base.html' %}
+{% block content %}
+  <h2>{{ gift.title }}</h2>
+  <p>{{ gift.description }}</p>
+  <p><strong>Patrocinador:</strong> {{ gift.sponsor }}</p>
+  <p><strong>Duração:</strong> {{ gift.start }} — {{ gift.end }}</p>
+  <p><strong>Retirada:</strong> {{ gift.pickup_location }} — {{ gift.pickup_time }}</p>
+  <a class="btn" href="{% url 'giveaways:register' gift.pk %}">Quero este brinde</a>
+{% endblock %}
